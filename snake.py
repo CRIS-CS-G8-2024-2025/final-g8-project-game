@@ -33,3 +33,11 @@ window_y = int((screen_height/4) - (window_height/4))
 
 #format "(w)x(h)+(x)+(y)"
 window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
+
+#initialize game
+snake = Tile(TILE_SIZE * 5, TILE_SIZE * 5) #single tile, snake's head
+food = Tile(TILE_SIZE * 10, TILE_SIZE * 10)
+velocityX = 0
+velocityY = 0
+snake_body = [] #multiple snake tiles
+game_over = 
