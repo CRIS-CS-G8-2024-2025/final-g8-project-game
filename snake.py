@@ -1,12 +1,12 @@
 import tkinter
 import random  
 
-ROWS = 50
-COLS = 50
-TILE_SIZE = 50
+ROWS = 25
+COLS = 25
+TILE_SIZE = 25
 
-WINDOW_WIDTH = TILE_SIZE * COLS #50*50 = 2500
-WINDOW_HEIGHT = TILE_SIZE * ROWS #50*50 = 2500
+WINDOW_WIDTH = TILE_SIZE * COLS #25*25 = 625
+WINDOW_HEIGHT = TILE_SIZE * ROWS #25*25 = 625
 
 class Tile:
     def __init__(self, x, y):
@@ -42,4 +42,7 @@ velocityY = 0
 snake_body = [] #multiple snake tiles
 game_over = False
 score = 0
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8961def51cb66ff10adb806b4838453a238eca11
