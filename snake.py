@@ -40,4 +40,6 @@ food = Tile(TILE_SIZE * 10, TILE_SIZE * 10)
 velocityX = 0
 velocityY = 0
 snake_body = [] #multiple snake tiles
-game_over = 
+game_over = False
+score = 0
+
