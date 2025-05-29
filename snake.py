@@ -1,10 +1,18 @@
+'''
+Punch Jiasing Sai Grade8 Computerscience
+
+This is a simple snake game using Python and tkinter for the graphics.
+'''
+
 import tkinter
 import random  
 
+# Initial game setup
 ROWS = 25
 COLS = 25
 TILE_SIZE = 25
 
+# Initialize window size based on grid settings
 WINDOW_WIDTH = TILE_SIZE * COLS #25*25 = 625
 WINDOW_HEIGHT = TILE_SIZE * ROWS #25*25 = 625
 
@@ -18,6 +26,7 @@ window = tkinter.Tk()
 window.title("Snake")
 window.resizable(False, False)
 
+#  Set up the main drawing area for the game
 canvas = tkinter.Canvas(window, bg = "black", width = WINDOW_WIDTH, height = WINDOW_HEIGHT, borderwidth = 0, highlightthickness = 0)
 canvas.pack()
 window.update()
@@ -45,13 +54,12 @@ score = 0
 
 #game loop
 def change_direction(e): #e = event
-    # print(e)
-    # print(e.keysym)
-
+    #  Handle direction change from keyboard input
     global velocityX, velocityY, game_over
     if (game_over):
         return #edit this code to reset game variables to play again
 
+    # Change direction according to arrow key input
     if (e.keysym == "Up" and velocityY != 1):
         velocityX = 0
         velocityY = -1
@@ -69,14 +77,18 @@ def change_direction(e): #e = event
 
 
 def move():
+    '''TODO: moves whats on the screen'''
     global snake, food, snake_body, game_over, score
     if (game_over):
         return
 
-    if (snake.x < 0 or snake.x >= WINDOW_WIDTH or snake.y < 0 or snake.y >= WINDOW_HEIGHT):
+    # Check if the snake collides with the wall
+     for tile in snake_body:
+         if (snake.x < 0 or snake.x >= WINDOW_WIDTH or snake.y < 0 or snake.y >= WINDOW_HEIGHT):
         game_over = True
         return
 
+    # Check for self-collision
     for tile in snake_body:
         if (snake.x == tile.x and snake.y == tile.y):
             game_over = True
@@ -88,7 +100,7 @@ def move():
         food.y = random.randint(0, ROWS-1) * TILE_SIZE
         score += 1
 
-    #update snake body
+    #update snake body (more detail)
     for i in range(len(snake_body)-1, -1, -1):
         tile = snake_body[i]
         if (i == 0):
@@ -103,6 +115,7 @@ def move():
     snake.y += velocityY * TILE_SIZE
 
 def draw():
+    '''Comment'''
     global snake, food, snake_body, game_over, score
     move()
 
@@ -114,9 +127,11 @@ def draw():
     #draw snake
     canvas.create_rectangle(snake.x, snake.y, snake.x + TILE_SIZE, snake.y + TILE_SIZE, fill = 'light blue')
 
+    # Sketch every section of the snake’s body.
     for tile in snake_body:
         canvas.create_rectangle(tile.x, tile.y, tile.x + TILE_SIZE, tile.y + TILE_SIZE, fill = 'light blue')
 
+    # Show Game Over message and current score
     if (game_over):
         canvas.create_text(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, font = "Arial 20", text = f"Game Over: {score}", fill = "red")
     else:
