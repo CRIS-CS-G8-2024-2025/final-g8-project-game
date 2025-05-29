@@ -79,12 +79,12 @@ def change_direction(e): #e = event
 def move():
     '''TODO: moves whats on the screen'''
     global snake, food, snake_body, game_over, score
+    
     if (game_over):
         return
 
     # Check if the snake collides with the wall
-     for tile in snake_body:
-         if (snake.x < 0 or snake.x >= WINDOW_WIDTH or snake.y < 0 or snake.y >= WINDOW_HEIGHT):
+    if (snake.x < 0 or snake.x >= WINDOW_WIDTH or snake.y < 0 or snake.y >= WINDOW_HEIGHT):
         game_over = True
         return
 
